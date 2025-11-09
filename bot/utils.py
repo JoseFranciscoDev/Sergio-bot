@@ -2,7 +2,7 @@ import os
 
 CHAT_ID_FILE = "subscribers.txt"
 
-def save_chat_id(chat_id):
+def save_chat_id(chat_id: int):
     """Salva um chat_id no arquivo, se ele já não existir."""
     try:
         if not os.path.exists(CHAT_ID_FILE):
