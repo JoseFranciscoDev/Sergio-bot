@@ -1,10 +1,15 @@
+from os import getenv
+
+from dotenv import load_dotenv
 from google import genai
 from google.genai import types
 
 import bot.commands as commands  # noqa: F401
 from bot_instance import bot, telebot
 
-client = genai.Client(api_key="AIzaSyAMFJBo8n8cDX9BJZzzVbToo9EMpHo_5FQ", )
+load_dotenv()
+
+client = genai.Client(api_key=getenv('gemini_api_key'), )
 
 @bot.message_handler(['start'])
 def start(msg: telebot.types.Message):
