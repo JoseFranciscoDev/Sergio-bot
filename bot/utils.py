@@ -1,5 +1,6 @@
 import os
 
+#TODO: Trocar os prints por loggers
 CHAT_ID_FILE = "subscribers.txt"
 
 def save_chat_id(chat_id: int):
