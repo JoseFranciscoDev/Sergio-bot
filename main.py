@@ -17,9 +17,6 @@ client = GeminiClient(api_key=getenv('gemini_api_key'),
 
 @bot.message_handler()
 def echo_user_message(msg: telebot.types.Message):
-    # response = client.question(contents=msg)
-    # print(msg.text)
-    # bot.reply_to(msg, str(response))
     user_message = msg.text
     print(user_message)
     chat_id = msg.chat.id
@@ -34,9 +31,9 @@ def echo_user_message(msg: telebot.types.Message):
     
     response = client.question(contents=gemini_history)
 
-    add_message(msg.chat.id, response, role="model")
+    add_message(chat_id=chat_id, message=response, role="model")
 
-    bot.reply_to(msg, str(response))
+    bot.reply_to(msg, response)
     
 @bot.message_handler(['start'])
 def start(msg: telebot.types.Message):

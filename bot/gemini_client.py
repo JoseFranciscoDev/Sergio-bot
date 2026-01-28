@@ -14,7 +14,7 @@ class GeminiClient(Client):
         self.model = model
         self.instructions = instructions
         
-    def question(self, contents, opcional_instructions = None, model=None) -> str | None:
+    def question(self, contents, opcional_instructions = None, model=None) -> str:
         """
             Envia um prompt para o modelo. Por padrão você precisa mandar apenas o conteúdo do prompt,
             mas caso queira alterar de alguma forma as intruções do modelo, você pode alterar através
@@ -26,4 +26,4 @@ class GeminiClient(Client):
                 model (str): modelo que será usado na pergunta
         """
         response = self.models.generate_content(model=model if model else self.model, contents=contents,config=types.GenerateContentConfigDict(system_instruction=self.instructions + opcional_instructions if opcional_instructions else self.instructions))
-        return response.text
+        return str(response.text)
