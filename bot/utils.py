@@ -1,26 +1,40 @@
 import os
 
-#TODO: Trocar os prints por loggers
+# TODO: Trocar os prints por loggers
+
+
+def is_valid_command(command: str):
+    if command.startswith("/") and command not in [
+        "hora_atual",
+        "commands",
+        "quem_é",
+    ]:
+        return False
+    return True
+
+
 CHAT_ID_FILE = "subscribers.txt"
+
 
 def save_chat_id(chat_id: int):
     """Salva um chat_id no arquivo, se ele já não existir."""
     try:
         if not os.path.exists(CHAT_ID_FILE):
             with open(CHAT_ID_FILE, "w") as f:
-                pass 
+                pass
 
         with open(CHAT_ID_FILE, "r") as f:
             existing_ids = f.read().splitlines()
-          
+
         if str(chat_id) not in existing_ids:
             with open(CHAT_ID_FILE, "a") as f:
                 f.write(f"{chat_id}\n")
             print(f"Novo ID salvo: {chat_id}")
-            
+
     except Exception as e:
         print(f"Erro ao salvar chat_id: {e}")
-        
+
+
 def get_all_chat_ids():
     """Busca todos os chat_ids salvos"""
     try:
