@@ -1,6 +1,6 @@
 from os import getenv
-
 from dotenv import load_dotenv
+from settings import env_file
 from google.genai import types
 
 import bot.commands as commands  # noqa: F401
@@ -9,9 +9,8 @@ from bot.gemini_client import GeminiClient
 from bot_instance import bot, telebot
 from bot.utils import is_valid_command
 
-print(telebot)
+load_dotenv(dotenv_path=env_file)
 
-load_dotenv()
 
 client = GeminiClient(
     api_key=getenv("gemini_api_key"),
@@ -44,14 +43,6 @@ def echo_user_message(msg: telebot.types.Message):
     bot.reply_to(
         msg,
         'Esse não é um comando válido. Experimente usar "/commands" para ver os comandos disponíveis',
-    )
-
-
-@bot.message_handler(["start"])
-def start(msg: telebot.types.Message):
-    bot.reply_to(
-        msg,
-        "Prazer, eu sou o chatbot do zé e caso queira que eu 'pense' e te responda algo que não está na lista de comandos, basta perguntar sem usar '/'",
     )
 
 
