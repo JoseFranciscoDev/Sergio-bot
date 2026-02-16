@@ -22,7 +22,6 @@ client = GeminiClient(
 @bot.message_handler()
 def echo_user_message(msg: telebot.types.Message):
     user_message = str(msg.text)
-    print("Tá batendo no bot certo")
     if is_valid_command(user_message):
         print(user_message)
         chat_id = msg.chat.id
