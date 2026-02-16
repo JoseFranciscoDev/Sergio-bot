@@ -2,6 +2,13 @@ from datetime import datetime
 
 from bot_instance import bot, telebot
 
+@bot.message_handler(["start"])
+def start(msg: telebot.types.Message):
+    bot.reply_to(
+        msg,
+        "Prazer, eu sou o chatbot do zé e caso queira que eu 'pense' e te responda algo que não está na lista de comandos, basta perguntar sem usar '/'",
+    )
+
 
 @bot.message_handler(["hora_atual"])
 def command_hora_atual(msg: telebot.types.Message) -> None:
