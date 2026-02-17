@@ -18,8 +18,6 @@ client = GeminiClient(
 def echo_user_message(msg: telebot.types.Message):
     user_message = str(msg.text)
     if is_valid_command(user_message):
-        print("É um comando válido")
-        print(user_message)
         chat_id = msg.chat.id
         add_message(chat_id=chat_id, message=user_message, role="user")
 
