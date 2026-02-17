@@ -8,6 +8,7 @@ def is_valid_command(command: str):
         "hora_atual",
         "commands",
         "quem_é",
+        "start",
     ]:
         return False
     return True

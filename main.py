@@ -1,6 +1,3 @@
-from os import getenv
-from dotenv import load_dotenv
-from settings import env_file
 from google.genai import types
 
 import bot.commands as commands  # noqa: F401
@@ -8,9 +5,7 @@ from bot.db import add_message, get_history
 from bot.gemini_client import GeminiClient
 from bot_instance import bot, telebot
 from bot.utils import is_valid_command
-
-load_dotenv(dotenv_path=env_file)
-
+from os import getenv
 
 client = GeminiClient(
     api_key=getenv("gemini_api_key"),
@@ -23,7 +18,6 @@ client = GeminiClient(
 def echo_user_message(msg: telebot.types.Message):
     user_message = str(msg.text)
     if is_valid_command(user_message):
-        print(user_message)
         chat_id = msg.chat.id
         add_message(chat_id=chat_id, message=user_message, role="user")
 
