@@ -1,15 +1,10 @@
 import os
-
+from settings import COMMANDS
 # TODO: Trocar os prints por loggers
 
 
 def is_valid_command(command: str):
-    if command.startswith("/") and command not in [
-        "hora_atual",
-        "commands",
-        "quem_é",
-        "start",
-    ]:
+    if command.startswith("/") and command not in COMMANDS:
         return False
     return True
 
