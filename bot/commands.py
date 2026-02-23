@@ -18,8 +18,7 @@ def command_start(msg: telebot.types.Message):
 @add_command
 def command_hora_atual(msg: telebot.types.Message) -> None:
     hora_atual: datetime = datetime.now()
-    print(msg)
-    bot.reply_to(msg, f"Agora é {hora_atual}")
+    bot.reply_to(msg, f"Agora é {hora_atual.hour}:{hora_atual.minute}")
 
 
 @bot.message_handler(["quem_e"])
@@ -36,7 +35,20 @@ def command_quem_voce_e(msg: telebot.types.Message) -> None:
 def command_commands(msg: telebot.types.Message) -> None:
     bot.reply_to(
         msg,
-        f'Todos os comandos devem iniciar com "/"Atualmente os comandos disponíveis são: \n/{"\n/".join(str(command) for command in COMMANDS)}',
+        f'Todos os comandos devem iniciar com "/". Atualmente os comandos disponíveis são: \n/{"\n/".join(str(command) for command in COMMANDS)}',
+    )
+
+
+@bot.message_handler(["chat_info"])
+def command_chat_info(msg: telebot.types.Message) -> None:
+    bot.reply_to(
+        msg,
+        f"Chat ID: {msg.chat.id}\n"
+        f"Chat Type: {msg.chat.type}\n"
+        f"Chat Title: {msg.chat.title}\n"
+        f"User ID: {msg.from_user.id}\n"
+        f"Username: {msg.from_user.username}\n"
+        f"First_name: {msg.from_user.first_name}\n",
     )
 
 
