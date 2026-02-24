@@ -4,7 +4,7 @@ from settings import COMMANDS
 
 
 def is_valid_command(command: str):
-    if command.startswith("/") and command not in COMMANDS:
+    if command.startswith("/") and command.removeprefix("/") not in COMMANDS:
         return False
     return True
 
