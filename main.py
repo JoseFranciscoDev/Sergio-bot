@@ -6,6 +6,8 @@ from bot.gemini_client import GeminiClient
 from bot_instance import bot, telebot
 from bot.utils import is_valid_command
 from os import getenv
+import settings  # noqa
+
 
 client = GeminiClient(
     api_key=getenv("gemini_api_key"),
